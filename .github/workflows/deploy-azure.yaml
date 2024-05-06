@@ -12,7 +12,7 @@ jobs:
      - name: login to azure 
        uses: azure/login@v1 
        with:
-         creds: ${{ secrets.AZURE_CREDENTAILS}}
+         creds: ${{ secrets.AZURE_CREDENTIALS}}
      - name: deploy to aks 
        uses: azure/aks-set-context@v3
        with:
