@@ -1,0 +1,28 @@
+name: DEPLOY TO AZURE 
+on: 
+ push:
+   branches:
+     - dev 
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout
+       uses: actions/checkout@v2 
+     - name: login to azure 
+       uses: azure/login@v1 
+       with:
+         creds: ${{ secrets.AZURE_CREDENTAILS}}
+     - name: deploy to aks 
+       uses: azure/aks-set-context@v3
+       with:
+         creds: ${{ secrets.AZURE_CREDENTAILS}}
+         resource-group: my-resource-group
+         cluster-name: my-aks-cluster
+     - name: deploy to aks
+       run: |
+        kubectl create -f ./kubernetes/namespace.yaml 
+        kubectl create -f ./kubernetes/deployment.yaml
+        kubectl create -f ./kubernetes/service.yaml 
+        kubectl get pod,svc -n dev-namespace
+
