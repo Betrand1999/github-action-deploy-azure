@@ -19,7 +19,7 @@ jobs:
      - name: build with docker 
        run: docker build -t app . 
      - name: run the app 
-       run: docker run -p 6060:80 app 
+       run: docker run -d -p 6060:80 app 
      - name: tag 
        run: docker tag app:v.1 betrand1997/app:v.1
      - name: push image 
