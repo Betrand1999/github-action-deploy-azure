@@ -12,7 +12,7 @@ jobs:
      - name: checkout action
        uses: actions/checkout@v2 
      - name: login to docker 
-       uses: docker/login@v1
+       uses: docker/login@v2
        with:
          username: ${{secrets.DOCKER_USERNAME}}
          password: ${{secrets.DOCKER_PASSWORD}}
