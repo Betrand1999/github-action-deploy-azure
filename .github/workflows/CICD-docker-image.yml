@@ -19,8 +19,11 @@ jobs:
      - name: build with docker 
        run: docker build -t app . 
      - name: run the app 
-       run: docker run -d -p 6060:80 app 
+       run: |
+        docker run -d -p 6061:80 app --name my-container
+        docker images 
+        docker ps 
      - name: tag 
-       run: docker tag app:v.1 betrand1997/app:v.1
+       run: docker tag app:latest betrand1997/app:latest
      - name: push image 
-       run: docker push betrand1997/app:v.1
+       run: docker push betrand1997/app:latest
