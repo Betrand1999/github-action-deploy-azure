@@ -17,7 +17,7 @@ jobs:
         resource-group: my-resource-group
 
      - name: login to azure 
-       uses: azure/login@v1
+       run: az login
        with:
         creds: ${{secrets.CREDENTIALS}}
         cluster-name: my-aks-cluster
