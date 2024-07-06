@@ -1,1 +1,25 @@
-
+name: CICD DEPLOY IMAGE TO AZURE AKS 
+on: 
+ push:
+   branches:
+     - main 
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout
+       uses: actions/checkout@v2
+     - name: set up k8s cli 
+       uses: azure/aks-st-context@v1
+     - name: login to azure 
+       uses: azure/login@v2
+       with:
+        creds: ${{secrets.CREDENTIALS}}
+        cluster-name: my-aks-cluster
+        resource-group: my-resource-group
+     - name: deploy to azure 
+       run: |
+        kubectl apply -f ./kubernetes/namespace.yaml
+        kubectl apply -f ./kubernetes/deployment.yaml
+        kubectl apply -f ./kubernetes/service.yaml
+         
