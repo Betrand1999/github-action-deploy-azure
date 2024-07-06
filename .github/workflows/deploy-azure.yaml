@@ -10,9 +10,9 @@ jobs:
      - name: checkout
        uses: actions/checkout@v2
      - name: set up k8s cli 
-       uses: azure/aks-get-context@v1
+       uses: azure/aks-set-context@v3
      - name: login to azure 
-       uses: azure/login@v2
+       uses: azure/login@v1
        with:
         creds: ${{secrets.CREDENTIALS}}
         cluster-name: my-aks-cluster
