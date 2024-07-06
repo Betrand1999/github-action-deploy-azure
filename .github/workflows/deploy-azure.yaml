@@ -9,19 +9,16 @@ jobs:
    steps:
      - name: checkout
        uses: actions/checkout@v2
-     - name: set up k8s cli 
+     - name: login to azure
+       uses: azure/login@v2
+       with:
+        creds: ${{secrets.CREDENTIALS}}
+     - name: set up k8s cli
        uses: azure/aks-set-context@v3
        with:
-        creds: ${{secrets.CREDENTIALS}}
-        cluster-name: my-aks-cluster
-        resource-group: my-resource-group
-
-     - name: login to azure 
-       run: azure/login@v1
-       with:
-        creds: ${{secrets.CREDENTIALS}}
-        cluster-name: my-aks-cluster
-        resource-group: my-resource-group
+         creds: ${{secrets.CREDENTIALS}}
+         cluster-name: my-aks-cluster
+         resource-group: my-resource-group
      - name: deploy to azure 
        run: |
         kubectl apply -f ./kubernetes/namespace.yaml
