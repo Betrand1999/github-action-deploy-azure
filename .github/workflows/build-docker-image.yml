@@ -16,10 +16,10 @@ jobs:
      - name: build docker images 
        run: docker build -t my-app .
      - name: tag
-       run: docker tag betrand1997/my-app:latest
+       run: docker tag my-app betrand1997/my-app:latest
      - name: push image
        run: docker push betrand1997/my-app:latest
      - name: run image
-       run: docker run -d -p 8080:80 my-app --name my-container
+       run: docker run -d -p 8080:80 betrand1997/my-app:latest --name my-container
       
 
