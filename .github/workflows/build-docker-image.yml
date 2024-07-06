@@ -4,7 +4,8 @@ on:
 
 jobs:
   build:
-   runs-on: ubuntu-latest 
+   runs-on: ubuntu-latest
+   if: true
    steps:
      - name: checkout repositoy 
        uses: actions/checkout@v2 
