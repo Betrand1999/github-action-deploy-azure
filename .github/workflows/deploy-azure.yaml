@@ -12,7 +12,7 @@ jobs:
      - name: login to azure 
        uses: azure/login@v1
        with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.CREDENTIALS }}
         resource-group: my-resource-group
         cluster-name: my-aks-cluster
      - name: set aks
