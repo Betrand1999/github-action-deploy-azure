@@ -30,4 +30,5 @@ jobs:
           kubectl apply -f ./kubernetes/namespace.yaml
           kubectl get ns
           kubectl apply -f ./kubernetes/Deployment.yaml
-          kubectl apply -f ./kubernetes/service.yaml
+          kubectl apply -f ./kubernetes/service.yaml 
+        #
