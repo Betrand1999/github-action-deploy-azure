@@ -1,38 +1,32 @@
 name: Deploy app to Azure
+
 on:
- push:
-   branches:
-     - main
+  push:
+    branches:
+      - main
+
 jobs:
   build:
-   runs-on: ubuntu-latest 
-   steps:
-     - name: checkout repo 
-       uses: actions/checkout@v2 
-     - name: login to azure 
-       uses: azure/login@v1
-       with:
-        creds: ${{ secrets.CREDENTIALS }}
-        resource-group: my-resource-group
-        cluster-name: my-aks-cluster
-     - name: set aks
-       uses: azure/aks-set-context@v1
-       with:
-        creds: ${{ secrets.CREDENTIALS }}
-         
-     - name: deploy to aks 
-       run: |
-        kubectl create -f ./kubernetes/namespace.yaml
-        kubectl create -f ./kubernetes/deployment.yaml
-        kubectl create -f ./kubernetes/service.yaml
-        
+    runs-on: ubuntu-latest
 
-        
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      
-       
-          
-   
-       
-         
-        
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.CREDENTIALS }}
+
+      - name: Set AKS context
+        uses: azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.CREDENTIALS }}
+          resource-group: my-resource-group
+          cluster-name: my-aks-cluster
+
+      - name: Deploy to AKS
+        run: |
+          kubectl apply -f ./kubernetes/namespace.yaml
+          kubectl apply -f ./kubernetes/deployment.yaml
+          kubectl apply -f ./kubernetes/service.yaml
