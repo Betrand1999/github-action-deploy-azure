@@ -21,4 +21,4 @@ jobs:
      - name: push image 
        run: docker push betrand1997/my-app:latest
      - name: check status 
-       run: docker ps 
+       run: docker ps ##
