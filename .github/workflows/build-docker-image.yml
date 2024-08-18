@@ -1,0 +1,24 @@
+name: CICD BUILD AND DEPLOY DOCKER IMAGE
+on:
+ push:
+   branches:
+     - main
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: check repo 
+       uses: actions/checkout@v2 
+     - name: login to docker 
+       uses: docker/login@v2 
+       with:
+         username: ${{secrets.DOCKER_PASSWORD}}
+         password: ${{secrets.DOCKER_USERNAME}}
+     - name: build image 
+       run: docker build -t myapp .
+     - name: tage image 
+       run: docker tag myapp betrand1997/my-app:latest 
+     - name: push image 
+       run: docker push betrand1997/my-app:latest
+     - name: check status 
+       run: docker ps 
