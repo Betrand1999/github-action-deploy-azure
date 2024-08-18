@@ -4,7 +4,7 @@ metadata:
   name: my-deployment
   namespace: my-namespace
 spec:
-  replicas: 0
+  replicas: 5
   selector:
     matchLabels:
       app: myapp
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: betrand1997/my-app
+        image: betrand1997/my-app #
         resources:
           limits:
             memory: "128Mi"
